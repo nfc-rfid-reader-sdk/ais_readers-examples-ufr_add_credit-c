@@ -42,6 +42,10 @@ win32 :
 	echo "To run the example - type:"
 	echo "   'cd win32_release'"
 	echo "   'run_me'"
+	# generate run_me
+	echo "@echo off" > win32_release\\run_me.cmd
+	echo "set path=..\lib\windows\x86;%path%" >> win32_release\\run_me.cmd
+	echo "$(PRJNAME).exe" >> win32_release\\run_me.cmd
 
 win64 :
 	echo "If You see error like: 'lib/windows/x86_64/uFCoder-x86_64.dll: file not recognized: File format not recognized'"
@@ -55,3 +59,7 @@ win64 :
 	echo "To run the example - type:"
 	echo "   'cd win64_release'"
 	echo "   'run_me'"
+	# generate run_me
+	echo "@echo off" > win64_release\\run_me.cmd
+	echo "set path=..\lib\windows\x86_64;%path%" >> win64_release\\run_me.cmd
+	echo "$(PRJNAME)" >> win64_release\\run_me.cmd
