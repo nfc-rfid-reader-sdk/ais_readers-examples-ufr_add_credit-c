@@ -61,7 +61,7 @@ bool CheckDependencies(void) {
 		wrong_version = true;
 	} else if (version_major == MIN_DEPEND_FW_VER_MAJOR && version_minor < MIN_DEPEND_FW_VER_MINOR) {
 		wrong_version = true;
-	} else if (version_major == MIN_DEPEND_LIB_VER_MAJOR && version_minor == MIN_DEPEND_FW_VER_MINOR && build < MIN_DEPEND_FW_VER_BUILD) {
+	} else if (version_major == MIN_DEPEND_FW_VER_MAJOR && version_minor == MIN_DEPEND_FW_VER_MINOR && build < MIN_DEPEND_FW_VER_BUILD) {
 		wrong_version = true;
 	}
 

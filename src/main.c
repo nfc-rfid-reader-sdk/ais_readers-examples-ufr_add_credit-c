@@ -70,16 +70,22 @@ int main(void)
 		getchar();
 		return EXIT_FAILURE;
 	}
-	if (!CheckDependencies())
-	{
-		ReaderClose();
-		getchar();
-		return EXIT_FAILURE;
-	}
 	status = ReaderReset();
 	if (status != UFR_OK)
 	{
 		printf("Error while opening device, status is: 0x%08X\n", status);
+		getchar();
+		return EXIT_FAILURE;
+	}
+#if __WIN32 || __WIN64
+			Sleep(500);
+#else // if linux || __linux__ || __APPLE__
+			usleep(500000);
+#endif
+
+	if (!CheckDependencies())
+	{
+		ReaderClose();
 		getchar();
 		return EXIT_FAILURE;
 	}
