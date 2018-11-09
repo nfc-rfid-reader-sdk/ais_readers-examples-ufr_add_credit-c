@@ -5,7 +5,7 @@
 #
 $(VERBOSE).SILENT:
 
-PRJNAME = template-console
+PRJNAME = ais_readers-examples-ufr_add_credit-c
 
 all : help
 
