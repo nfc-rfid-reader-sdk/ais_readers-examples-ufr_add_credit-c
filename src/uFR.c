@@ -107,13 +107,13 @@ sz_ptr GetDlTypeName(uint8_t dl_type_code) {
 		return "DL_MIFARE_CLASSIC_1K";
 	case DL_MIFARE_CLASSIC_4K:
 		return "DL_MIFARE_CLASSIC_4K";
-	case DL_MIFARE_PLUS_S_2K:
+	case DL_MIFARE_PLUS_S_2K_SL1:
 		return "DL_MIFARE_PLUS_S_2K";
-	case DL_MIFARE_PLUS_S_4K:
+	case DL_MIFARE_PLUS_S_4K_SL1:
 		return "DL_MIFARE_PLUS_S_4K";
-	case DL_MIFARE_PLUS_X_2K:
+	case DL_MIFARE_PLUS_X_2K_SL1:
 		return "DL_MIFARE_PLUS_X_2K";
-	case DL_MIFARE_PLUS_X_4K:
+	case DL_MIFARE_PLUS_X_4K_SL1:
 		return "DL_MIFARE_PLUS_X_4K";
 	case DL_MIFARE_DESFIRE:
 		return "DL_MIFARE_DESFIRE";
@@ -131,7 +131,7 @@ sz_ptr GetDlTypeName(uint8_t dl_type_code) {
 		return "DL_MIFARE_DESFIRE_EV2_8K";
 	case DL_GENERIC_ISO14443_4:
 		return "DL_GENERIC_ISO_14443_4";
-	case DL_GENERIC_ISO14443_TYPE_B:
+	case DL_GENERIC_ISO14443_4_TYPE_B:
 		return "DL_GENERIC_ISO14443_TYPE_B";
 	case DL_IMEI_UID:
 		return "DL_IMEI_UID";
