@@ -188,14 +188,14 @@ void menu(char key)
 void usage(void)
 {
 		printf(" +------------------------------------------------+\n"
-			   " |              Application title                 |\n"
+			   " |      Add credit to Base HD cards (example)     |\n"
 			   " |                 version "APP_VERSION"                    |\n"
 			   " +------------------------------------------------+\n"
 			   "                              For exit, hit escape.\n");
 		printf(" --------------------------------------------------\n");
-		printf("  (1) - Option 1\n"
-			   "  (2) - Option 2\n"
-			   "  (3) - Option 3\n");
+		printf("  (1) - Get credit\n"
+			   "  (2) - Add credit\n"
+			   "  (3) - Set Auth. Key\n");
 }
 //------------------------------------------------------------------------------
 UFR_STATUS NewCardInField(uint8_t sak, uint8_t *uid, uint8_t uid_size)
@@ -215,24 +215,75 @@ UFR_STATUS NewCardInField(uint8_t sak, uint8_t *uid, uint8_t uid_size)
 	return UFR_OK;
 }
 //------------------------------------------------------------------------------
+
+static unsigned char appkey[6] = "";
+
 void Operation1(void)
 {
 	printf(" -------------------------------------------------------------------\n");
-	printf("                           Operation 1                              \n");
+	printf("                           Get credit                               \n");
 	printf(" -------------------------------------------------------------------\n");
+
+	UFR_STATUS e;
+
+	uint32_t auth_mode = MIFARE_AUTHENT1A; // not implemented yet
+	int32_t credit;
+
+	e = BalanceGet(auth_mode, appkey, &credit);
+	printf("BalanceGet():= %s\n", UFR_Status2String(e));
+
+	if (e)
+		return;
+
+	printf("credit= %d\n", credit);
+
 }
 //------------------------------------------------------------------------------
 void Operation2(void)
 {
 	printf(" -------------------------------------------------------------------\n");
-	printf("                           Operation 2                              \n");
+	printf("                           Add credit                               \n");
 	printf(" -------------------------------------------------------------------\n");
+
+	// read value block
+	UFR_STATUS e;
+
+	uint32_t auth_mode = MIFARE_AUTHENT1A; // not implemented yet
+//	char *auth_value = "123456";
+	int32_t credit;
+
+	printf("Enter new balance: ");
+	scanf("%d", &credit);
+
+	e = BalanceSet(auth_mode, appkey, credit);
+	printf("BalanceSet():= %s\n", UFR_Status2String(e));
 }
 //------------------------------------------------------------------------------
 void Operation3(void)
 {
 	printf(" -------------------------------------------------------------------\n");
-	printf("                           Operation 3                              \n");
+	printf("                             Set key                                \n");
 	printf(" -------------------------------------------------------------------\n");
+
+	char key_str[128];
+	int r;
+
+	do
+	{
+		printf("Enter Crypto1 key [6 characters]: ");
+		r = scanf("%s", key_str);
+
+		r = strlen(key_str);
+
+		if (r == 6)
+			break;
+
+		printf("Enter key with 6 bytes, not %d.\n", r);
+
+	} while (true);
+
+	memcpy (appkey, key_str, sizeof(appkey));
+
+	puts("Key is set!");
 }
 //------------------------------------------------------------------------------
